@@ -1,0 +1,33 @@
+{
+  "name": "weatherapp_coderscamp",
+  "version": "1.0.0",
+  "description": "A weather forecast app built with vanilla Javascript.",
+  "main": "./src/js/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --mode development --watch",
+    "build": "webpack --mode production",
+    "start": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anna-postawka/WeatherApp_CodersCamp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anna-postawka/WeatherApp_CodersCamp/issues"
+  },
+  "homepage": "https://github.com/anna-postawka/WeatherApp_CodersCamp#readme",
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.7"
+  }
+}
