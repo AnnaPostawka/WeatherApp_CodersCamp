@@ -5,3 +5,4 @@ import View from "./View.js";
 const view = new View();
 const model = new Model(view);
 const appController = new Controller(model, view);
+// const app = new Controller(new Model(), new View());
