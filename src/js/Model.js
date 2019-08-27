@@ -4,9 +4,11 @@ export default class Model {
         this._view = view;
         this._apiKey = '2af7e2e12429ce3e4a759ae7a80c24f1';
         this._weatherData = undefined;
-        this._units = 'metric';
+        this._units = 'metric';  //metric or imperial
     }
 
+    //location is an array with city name ['wroclaw']
+    //or coords ['lat', 'long'] 
     changedLocation(location) {
         this._getWeatherData(location)
             .then((data) => {
@@ -16,6 +18,9 @@ export default class Model {
             });
     }
 
+    //unit is set to new unit
+    //if city has been already saved in weatherData
+    //metod for getting weatherData is called for this city
     changedUnits(unit) {
         this._units = unit;
         if (this._weatherData) {
@@ -28,6 +33,8 @@ export default class Model {
         }
     }
 
+    //location is an array with city name ['wroclaw']
+    //or coords ['lat', 'long'] 
     _getWeatherData(location) {
         let request;
         if (location.length == 1) {
@@ -46,7 +53,7 @@ export default class Model {
         return weatherData;
     }
 
-
+    //method fetching weather data
     async _weatherAPIRequest(request) {
         const response = await fetch(request);
         const data = await response.json();
