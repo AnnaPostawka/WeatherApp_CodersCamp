@@ -4,7 +4,7 @@ export default class Model {
         this._view = view;
         this._apiKey = '2af7e2e12429ce3e4a759ae7a80c24f1';
         this._weatherData = undefined;
-        this._units = 'metric';  //metric or imperial
+        this._units = 'metric'; //metric or imperial or deafult
     }
 
     //location is an array with city name ['wroclaw']
@@ -12,7 +12,6 @@ export default class Model {
     changedLocation(location) {
         this._getWeatherData(location)
             .then((data) => {
-                //call view method;
                 this._weatherData = data;
                 console.log(data);
             });
@@ -26,7 +25,6 @@ export default class Model {
         if (this._weatherData) {
             this._getWeatherData([this._weatherData.name])
                 .then((data) => {
-                    //call view method
                     this._weatherData = data;
                     console.log(data);
                 });
@@ -48,6 +46,33 @@ export default class Model {
 
         const weatherData = this._weatherAPIRequest(request)
             .then(data => {
+
+                this._view.setDateAndTime(new Date());
+                this._view.setCityName(data.name);
+                this._view.setCountry(data.sys.country);
+                this._view.setCurrentIcon(data.weather[0].icon);
+                this._view.setCurrentDescription(data.weather[0].description);
+                this._view.setCurrentTemperature(data.main.temp);
+                this._view.setCurrentHumidity(data.main.humidity);
+                this._view.setCurrentWindSpeed(data.wind.speed);
+                this._view.setCurrentWindDeg(data.wind.deg);
+
+                switch (this._units) {
+                    case 'default':
+                        this._view.setTemperatureUnit('K');
+                        this._view.setWindSpeedUnit('m/s');
+                        break;
+                    case 'metric':
+                        this._view.setTemperatureUnit(String.fromCharCode(176) + 'C');
+                        this._view.setWindSpeedUnit('m/s');
+                        break;
+                    case 'imperial':
+                        this._view.setTemperatureUnit(String.fromCharCode(176) + 'F');
+                        this._view.setWindSpeedUnit('mph');
+                        break;
+                    default:
+                        console.log('wrong unit')
+                }
                 return data;
             });
         return weatherData;
