@@ -46,33 +46,36 @@ export default class Model {
 
         const weatherData = this._weatherAPIRequest(request)
             .then(data => {
-
-                this._view.setDateAndTime(this._getlocalTime(data.dt, data.timezone));
-                this._view.setCityName(data.name);
-                this._view.setCountry(data.sys.country);
-                this._view.setCurrentIcon(data.weather[0].icon);
-                this._view.setCurrentDescription(data.weather[0].description);
-                this._view.setCurrentTemperature(data.main.temp);
-                this._view.setCurrentHumidity(data.main.humidity);
-                this._view.setCurrentWindSpeed(data.wind.speed);
-                this._view.setCurrentWindDeg(data.wind.deg);
+                let tempUnit;
+                let windSpeedUnit;
 
                 switch (this._units) {
                     case 'default':
-                        this._view.setTemperatureUnit('K');
-                        this._view.setWindSpeedUnit('m/s');
+                        tempUnit = 'K';
+                        windSpeedUnit = 'm/s';
                         break;
                     case 'metric':
-                        this._view.setTemperatureUnit(String.fromCharCode(176) + 'C');
-                        this._view.setWindSpeedUnit('m/s');
+                        tempUnit = String.fromCharCode(176) + 'C';
+                        windSpeedUnit = 'm/s';
                         break;
                     case 'imperial':
-                        this._view.setTemperatureUnit(String.fromCharCode(176) + 'F');
-                        this._view.setWindSpeedUnit('mph');
+                        tempUnit = String.fromCharCode(176) + 'F';
+                        windSpeedUnit = 'mph';
                         break;
                     default:
                         console.log('wrong unit')
                 }
+
+                this._view.setDateAndTime(this._getlocalTime(data.dt, data.timezone));
+                this._view.setCityAndCountry(data.name, data.sys.country);
+                this._view.setCurrentIcon(data.weather[0].icon);
+                this._view.setCurrentDescription(data.weather[0].description);
+                this._view.setCurrentTemperature(data.main.temp, tempUnit);
+                this._view.setCurrentHumidity(data.main.humidity, '%');
+                this._view.setCurrentWindSpeed(data.wind.speed, windSpeedUnit);
+                this._view.setCurrentWindDeg(data.wind.deg, String.fromCharCode(176));
+                this._view.setCurrentPressure(data.main.pressure, 'hPa');
+
                 return data;
             });
         return weatherData;
