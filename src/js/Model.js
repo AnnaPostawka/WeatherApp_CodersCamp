@@ -47,7 +47,7 @@ export default class Model {
         const weatherData = this._weatherAPIRequest(request)
             .then(data => {
 
-                this._view.setDateAndTime(new Date());
+                this._view.setDateAndTime(this._getlocalTime(data.dt, data.timezone));
                 this._view.setCityName(data.name);
                 this._view.setCountry(data.sys.country);
                 this._view.setCurrentIcon(data.weather[0].icon);
@@ -83,5 +83,14 @@ export default class Model {
         const response = await fetch(request);
         const data = await response.json();
         return data;
+    }
+
+    _getlocalTime(datetime, timezone) {
+
+        const now = new Date(datetime * 1000);
+        now.setMinutes(now.getMinutes() + now.getTimezoneOffset());
+        now.setMinutes(now.getMinutes() + timezone / 60);
+
+        return now;
     }
 }
