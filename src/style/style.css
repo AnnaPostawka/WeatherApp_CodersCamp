@@ -5,14 +5,16 @@
 }
 html{
     font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
 }
 :root{
-    --primaryColor:rgb(218, 218, 218);
+    --primaryColor:rgba(53,75,94,1);
 }
 .container{
     min-height: 100vh;
     background-image: url("../assets/images/fog.jpg");
     background-position: 50% 50%;
+ padding-bottom: 20px;
 }
 .title{
     display: block;
@@ -34,9 +36,9 @@ html{
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 15px;
+    font-size: 0.9rem;
     padding: 7px 0;
-    margin-bottom: 15px;
+    margin-bottom: 45px;
 }
 .form__input:focus{
     outline: 0;
@@ -45,18 +47,22 @@ html{
     color: white;
 }
 .weather-Info-Container{
-    background-color: rgba(128, 128, 128, 0.61);
+    background-color: rgba(190, 190, 190, 0.6);
     height: 50%;
     max-width: 500px;
     color: var(--primaryColor);
-    font-size: 20px;
+    font-size: 1.25rem;
     padding: 10px;
+    box-shadow: 0px 0px 61px 22px rgba(0,0,0,0.65);
     margin: 0 auto;
 }
 .currentInfo{
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+}
+.currentInfo__detail{
+    margin-bottom: 5px;
 }
 .currentInfo__temperatureBox{
     width: 51%;
@@ -70,11 +76,11 @@ html{
 .temperatureBox__weatherIcon{
     color: white;
 }
-.fahrenheit{
+.currentMax{
     position: relative;
     margin-right: 10px;
 }
-.fahrenheit::after{
+.currentMax::after{
     content: "";
     position: absolute;
     top: 0;
@@ -100,17 +106,36 @@ html{
 .off{
     display: none;
 }
+.min{
+    color:rgb(50, 86, 117);
+}
+.max{
+    color:rgb(218, 39, 39);
+}
 @media(min-width:530px){
     .temperatureBox__tempValue{
-        font-size: 20px;
+        font-size: 1.25rem;
     }
     .currentInfo__details{
         margin-left:50px;
    }
    .temperatureBox__tempValue{
-       font-size: 33px;
+       font-size: 2.06rem;
    }
    .off{
     display: block;
+    }
 }
+@media(min-width:1200px){
+    html{
+        font-size: 18px;;
+    }
+    .title{
+        font-size: 3.125rem;
+        width: 450px;
+    }
+    .weather-Info-Container{
+        max-width: 650px;
+        padding: 30px;
+    }
 }
