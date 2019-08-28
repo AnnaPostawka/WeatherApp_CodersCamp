@@ -6,10 +6,82 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>WeatherApp</title>
+    <script src="https://kit.fontawesome.com/c6f9d808e1.js"></script>
+    <link rel="stylesheet" href="../src/style/style.css">
+
 </head>
 
 <body>
+    <div id="root" class="container">
+        <h1 class="title">Welcome to the <span class="title__highlight">Weather</span> App</h1>
+        <form class="form" action="">
+            <input class="form__input" placeholder="Enter your city.." type="text">
+        </form>
+        <div class="weather-Info-Container">
+            <div class="currentInfo">
+                <div class="currentInfo__temperatureBox temperatureBox">
+                    <i class="temperatureBox__weatherIcon far fa-sun fa-3x"></i>
+                    <span class="temperatureBox__tempValue fahrenheit">64F</span>
+                    <span class="temperatureBox__tempValue celsius">13C</span>
+                </div>
+                <h2 class="currentInfo__city">Paris, FR</h2>
+                <div class="currentInfo__details">
+                    <div class="currentInfo__wind">Wind:
+                        <span> 6.2 mph</span>
+                        <i class="currentInfo__windIcon fas fa-wind"></i>
+                    </div>
+                    <div class="currentInfo__humidity">Humidity:<span> 42%</span></div>
+                </div>
+                <div class="currentInfo__details">
+                    <div class="currentInfo__date">Friday 8:41</div>
+                    <div class="currentInfo__sky">Clear Sky</div>
+                </div>
+            </div>
+            <div class="forecast">
+                <div class="forecast__day">
+                    <p class="forecast__value">Date</p>
+                    <p class="forecast__value">Min</p>
+                    <p class="forecast__value">Max</p>
+                </div>
+                <div class="forecast__day">
+                    <p class="forecast__value day">27/04</p>
+                    <p class="forecast__value">29F</p>
+                    <p class="forecast__value">36F</p>
+                </div>
+                <div class="forecast__day ">
+                    <p class="forecast__value day">28/04</p>
+                    <p class="forecast__value">59F</p>
+                    <p class="forecast__value">16F</p>
+                </div>
+                <div class="forecast__day off">
+                    <p class="forecast__value day">29/04</p>
+                    <p class="forecast__value">59F</p>
+                    <p class="forecast__value">26F</p>
+                </div>
 
+                <div class="forecast__day off">
+                    <p class="forecast__value day">29/04</p>
+                    <p class="forecast__value">59F</p>
+                    <p class="forecast__value">26F</p>
+                </div>
+                <div class="forecast__day off">
+                    <p class="forecast__value day">29/04</p>
+                    <p class="forecast__value">59F</p>
+                    <p class="forecast__value">26F</p>
+                </div>
+                <!-- <div class="forecast__day off">
+                    <p class="forecast__value day">29/04</p>
+                    <p class="forecast__value">59F</p>
+                    <p class="forecast__value">26F</p>
+                </div>
+                <div class="forecast__day off">
+                    <p class="forecast__value day">29/04</p>
+                    <p class="forecast__value">59F</p>
+                    <p class="forecast__value">26F</p>
+                </div> -->
+            </div>
+        </div>
+    </div>
     <script type="module" src="js/app.js"></script>
 </body>
 

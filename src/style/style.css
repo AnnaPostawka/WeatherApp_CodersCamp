@@ -1,0 +1,116 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    font-family: Arial, Helvetica, sans-serif;
+}
+:root{
+    --primaryColor:rgb(218, 218, 218);
+}
+.container{
+    min-height: 100vh;
+    background-image: url("../assets/images/fog.jpg");
+    background-position: 50% 50%;
+}
+.title{
+    display: block;
+    width: 250px;
+    margin: 0 auto;
+    padding: 50px 0;
+    text-align: center;
+    color:rgb(22, 21, 21);
+}
+.title__highlight{
+    color:rgb(101, 183, 231);
+}
+.form{
+    text-align: center;
+}
+.form__input{
+    text-align: center;
+    background-color: rgb(128, 128, 128);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    padding: 7px 0;
+    margin-bottom: 15px;
+}
+.form__input:focus{
+    outline: 0;
+}
+::placeholder{
+    color: white;
+}
+.weather-Info-Container{
+    background-color: rgba(128, 128, 128, 0.61);
+    height: 50%;
+    max-width: 500px;
+    color: var(--primaryColor);
+    font-size: 20px;
+    padding: 10px;
+    margin: 0 auto;
+}
+.currentInfo{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.currentInfo__temperatureBox{
+    width: 51%;
+}
+.currentInfo__city{
+    color:white;
+}
+.currentInfo__details{
+    margin-top: 20px;
+}
+.temperatureBox__weatherIcon{
+    color: white;
+}
+.fahrenheit{
+    position: relative;
+    margin-right: 10px;
+}
+.fahrenheit::after{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -10px;
+    width: 2px;
+    height:100%;
+    background-color: var(--primaryColor);
+}
+.forecast{
+    display: flex;
+    justify-content: center;
+    margin-top: 35px;
+}
+.forecast__day{
+    margin: 0 10px;
+    text-align: center;
+    color: white;
+}
+.forecast__value{
+    display: block;
+    margin:0 5px 5px 5px;
+}
+.off{
+    display: none;
+}
+@media(min-width:530px){
+    .temperatureBox__tempValue{
+        font-size: 20px;
+    }
+    .currentInfo__details{
+        margin-left:50px;
+   }
+   .temperatureBox__tempValue{
+       font-size: 33px;
+   }
+   .off{
+    display: block;
+}
+}
