@@ -12,6 +12,14 @@
 
 <body>
     <div id="root" class="container">
+        <div class="switchBox">
+            <input type="checkbox" name="switch" class="switch-checkbox" id="switch" checked>
+            <label class="switch-label" for="switch">
+                <span class="switch-inner"></span>
+                <span class="switch-switch"></span>
+            </label>
+        </div>
+
         <h1 class="title">Welcome to the <span class="title__highlight">Weather</span> App</h1>
         <form class="form" action="">
             <input class="form__input" placeholder="Enter your city.." type="text">
@@ -20,8 +28,7 @@
             <div class="currentInfo">
                 <div class="currentInfo__temperatureBox temperatureBox">
                     <i class="temperatureBox__weatherIcon far fa-sun fa-3x"></i>
-                    <span class="temperatureBox__tempValue currentMax">36C</span>
-                    <span class="temperatureBox__tempValue currentMin">20C</span>
+                    <span class="temperatureBox__tempValue currentTemp">36°C</span>
                 </div>
                 <h2 class="currentInfo__city">Paris, FR</h2>
                 <div class="currentInfo__details">
@@ -43,34 +50,34 @@
             </div>
             <div class="forecast">
                 <div class="forecast__day">
-                    <p class="forecast__value">Date</p>
-                    <p class="forecast__value">Min</p>
-                    <p class="forecast__value">Max</p>
+                    <p class="forecast__item">Date</p>
+                    <p class="forecast__item">Min</p>
+                    <p class="forecast__item">Max</p>
                 </div>
                 <div class="forecast__day">
-                    <p class="forecast__value day">27/04</p>
-                    <p class="forecast__value min">29C</p>
-                    <p class="forecast__value max">36C</p>
+                    <p class="forecast__item day">27/04</p>
+                    <p class="forecast__item  forecast__value value min">29°C</p>
+                    <p class="forecast__item  forecast__value value max">36°C</p>
                 </div>
                 <div class="forecast__day ">
-                    <p class="forecast__value day">28/04</p>
-                    <p class="forecast__value min">59C</p>
-                    <p class="forecast__value max">16C</p>
+                    <p class="forecast__item day">28/04</p>
+                    <p class="forecast__item  forecast__value min">59°C</p>
+                    <p class="forecast__item  forecast__value max">16°C</p>
                 </div>
                 <div class="forecast__day ">
-                    <p class="forecast__value day">29/04</p>
-                    <p class="forecast__value min">59C</p>
-                    <p class="forecast__value max">26C</p>
+                    <p class="forecast__item day">29/04</p>
+                    <p class="forecast__item  forecast__value min">59°C</p>
+                    <p class="forecast__item  forecast__value max">26°C</p>
                 </div>
                 <div class="forecast__day off">
-                    <p class="forecast__value day">29/04</p>
-                    <p class="forecast__value min">59C</p>
-                    <p class="forecast__value max">26C</p>
+                    <p class="forecast__item day">29/04</p>
+                    <p class="forecast__item  forecast__value min">59°C</p>
+                    <p class="forecast__item  forecast__value max">26°C</p>
                 </div>
                 <div class="forecast__day off">
-                    <p class="forecast__value day">29/04</p>
-                    <p class="forecast__value min">59C</p>
-                    <p class="forecast__value max">26C</p>
+                    <p class="forecast__item day">29/04</p>
+                    <p class="forecast__item forecast__value min">59°C</p>
+                    <p class="forecast__item forecast__value max">26°C</p>
                 </div>
             </div>
         </div>
