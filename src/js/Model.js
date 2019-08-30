@@ -90,7 +90,7 @@ export default class Model {
             .then((forecast) => {
                 return this._forecastMinMaxTemps(forecast);
             }).then(minMaxTemps => {
-                this._view.set5DaysTemperature(minMaxTemps, tempUnit);
+                this._view.set4DaysTemperature(minMaxTemps, tempUnit);
                 return minMaxTemps
             });
 
@@ -114,7 +114,7 @@ export default class Model {
     }
 
     _forecastMinMaxTemps(forecast) {
-        const temp5Days = [];
+        const temp4Days = [];
         const timezoneOffset = forecast.city.timezone;
         const startingDate = this._getlocalTime(forecast.list[0].dt, timezoneOffset).setHours(0, 0, 0, 0);
         const dates = [];
@@ -149,20 +149,17 @@ export default class Model {
                 case new Date(startingDate).setDate(new Date(startingDate).getDate() + 4):
                     allTemps[4].push(data.main.temp);
                     break;
-                case new Date(startingDate).setDate(new Date(startingDate).getDate() + 5):
-                    allTemps[5].push(data.main.temp);
-                    break;
             }
         });
 
-        for (let i = 1; i < dates.length; i++) {
-            temp5Days.push({
+        for (let i = 1; i < dates.length - 1; i++) {
+            temp4Days.push({
                 date: dates[i],
                 temp_min: Math.min(...allTemps[i]),
                 temp_max: Math.max(...allTemps[i]),
             });
         }
-        console.log(temp5Days);
-        return temp5Days;
+        console.log(temp4Days);
+        return temp4Days;
     }
 }
