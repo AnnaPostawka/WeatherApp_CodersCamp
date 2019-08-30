@@ -6,12 +6,14 @@ export default class View {
         this.setCityAndCountry('Wroclaw', 'PL');
         this.setCurrentDescription('hot as hell');
         this.setCurrentTemperature(28, '&degC');
-        this.setCurrentHumidity(48);
+        this.setCurrentHumidity(48, '%');
         this.setCurrentWindSpeed(14, 'km/h');
+        this.setCurrentPressure(1020, 'hPa');
         */
-        /*this.set5DaysTemperature('&degC');
+
+        /*this.set5DaysTemperature('&degC');*/
         this.setCurrentWindDeg(50);
-        this.setCurrentIcon("");*/
+        this.setCurrentIcon(200);
     }
 
 
@@ -30,7 +32,7 @@ export default class View {
         elem.classList.remove('fa-sun');
         elem.classList.remove('fa-3x');
         elem.classList.add('wi');
-        elem.classList.add('wi-day-sunny');
+        elem.classList.add(`wi-owm-${icon}`);
     }
 
     setCurrentDescription(description) {
