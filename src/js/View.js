@@ -1,19 +1,37 @@
 export default class View {
     constructor() {
+
         /* TEST */
         /*
         this.setDateAndTime('Wednesday 17:10');
-        this.setCityAndCountry('Wroclaw', 'PL');
-        this.setCurrentDescription('hot as hell');
+        this.setCityAndCountry('Wrocław', 'PL');
+        this.setCurrentIcon(200, 'day');
+        this.setCurrentDescription('Hot as hell');
         this.setCurrentTemperature(28, '&degC');
-        this.setCurrentHumidity(48, '%');
         this.setCurrentWindSpeed(14, 'km/h');
+        this.setCurrentWindDeg(50);
+        this.setCurrentHumidity(48, '%');
         this.setCurrentPressure(1020, 'hPa');
+        this.temp = [{
+            day: 30.08,
+            temp_min: 17,
+            temp_max: 20
+        }, {
+            day: 31.08,
+            temp_min: 18,
+            temp_max: 22
+        }, {
+            day: 1.09,
+            temp_min: 19,
+            temp_max: 24
+        }, {
+            day: 2.09,
+            temp_min: 20,
+            temp_max: 26
+        }]
+        this.set5DaysTemperature(this.temp, '&degC');
         */
 
-        /*this.set5DaysTemperature('&degC');*/
-        this.setCurrentWindDeg(50);
-        this.setCurrentIcon(200);
     }
 
 
@@ -24,70 +42,39 @@ export default class View {
     setCityAndCountry(city, country) {
         document.querySelector('.currentInfo__city').innerHTML = `${city}, ${country}`;
     }
-
-    /* Doesn't work yet */
-    setCurrentIcon(icon) {
+    setCurrentIcon(id, dayOrNight) {
         var elem = document.querySelector('.temperatureBox__weatherIcon');
-        elem.classList.remove('far');
-        elem.classList.remove('fa-sun');
-        elem.classList.remove('fa-3x');
         elem.classList.add('wi');
-        elem.classList.add(`wi-owm-${icon}`);
+        elem.classList.add(`wi-owm-${dayOrNight}-${id}`);
     }
-
     setCurrentDescription(description) {
         document.querySelector('.currentInfo__sky').innerHTML = description;
     }
     setCurrentTemperature(temperature, unit) {
-        document.querySelector('.temperatureBox__tempValue').innerHTML = `${temperature}${unit}`;
-    }
-    setCurrentPressure(pressure, unit) {
-        document.querySelector('.currentInfo__pressure').getElementsByTagName('span')[0].innerHTML = `${pressure} ${unit}`
-    }
-    setCurrentHumidity(humidity, unit) {
-        document.querySelector('.currentInfo__humidity').getElementsByTagName('span')[0].innerHTML = `${humidity}${unit}`;
+        document.querySelector('.currentTemp').innerHTML = `${temperature}${unit}`;
     }
     setCurrentWindSpeed(windSpeed, unit) {
 
-        document.querySelector('.currentInfo__wind').getElementsByTagName('span')[0].innerHTML = `${windSpeed} ${unit}`;
+        document.querySelector('.wind-value').innerHTML = `${windSpeed} ${unit}`;
     }
-
-    /* Doesn't work yet */
     setCurrentWindDeg(windDeg) {
         var elem = document.querySelector('.currentInfo__windIcon');
-        elem.classList.remove('fas');
-        elem.classList.remove('fa-wind');
         elem.classList.add('wi');
         elem.classList.add('wi-wind');
-        elem.classList.add(`towards-${windDeg}-deg`);
+        elem.classList.add(`from-${windDeg}-deg`);
     }
-    set5DaysTemperature(temp, unit) {}
-    /*
-    const temp = [{
-        date: 28.08,
-        temp_min: 30,
-        temp_max: 32
-    }, {
-        date: 29.08,
-        temp_min: 17,
-        temp_max: 20
-    }, {
-        date: 30.08,
-        temp_min: 18,
-        temp_max: 24
-    }, {
-        date: 31.08,
-        temp_min: 17,
-        temp_max: 20
-    }, {
-        date: 1.09,
-        temp_min: 18,
-        temp_max: 24
-    }];
-    for (let i = 0; i < 5; i++) {
-        document.querySelectorAll('.day')[i].innerHTML = temp[i].date;
-        document.querySelector('.min')[i].innerHTML = `${temp[i].temp_min}${unit}`;
-        document.querySelector('.max')[i].innerHTML = `${temp[i].temp_max}${unit}`;
+    setCurrentHumidity(humidity, unit) {
+        document.querySelector('.humidity-value').innerHTML = `${humidity}${unit}`;
     }
-    */
+    setCurrentPressure(pressure, unit) {
+        document.querySelector('.pressure-value').innerHTML = `${pressure} ${unit}`
+    }
+    set5DaysTemperature(temp, unit) {
+
+        for (let i = 0; i < 4; i++) {
+            document.querySelector('.forecast').querySelectorAll('.day')[i].innerHTML = temp[i].day;
+            document.querySelector('.forecast').querySelectorAll('.min')[i].innerHTML = temp[i].temp_min + unit;
+            document.querySelector('.forecast').querySelectorAll('.max')[i].innerHTML = temp[i].temp_max + unit;
+        }
+    }
 }

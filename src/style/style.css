@@ -1,36 +1,43 @@
-*{
-    margin:0;
+* {
+    margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-html{
+
+html {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
 }
-:root{
-    --primaryColor:rgba(53,75,94,1);
+
+:root {
+    --primaryColor: rgba(53, 75, 94, 1);
 }
-.container{
+
+.container {
     min-height: 100vh;
     background-image: url("../assets/images/fog.jpg");
     background-position: 50% 50%;
     padding-bottom: 20px;
 }
-.title{
+
+.title {
     display: block;
     width: 250px;
     margin: 0 auto;
     padding: 100px 0 20px 0;
     text-align: center;
-    color:rgb(22, 21, 21);
+    color: rgb(22, 21, 21);
 }
-.title__highlight{
-    color:rgb(101, 183, 231);
+
+.title__highlight {
+    color: rgb(101, 183, 231);
 }
-.form{
+
+.form {
     text-align: center;
 }
-.form__input{
+
+.form__input {
     text-align: center;
     background-color: rgb(128, 128, 128);
     color: white;
@@ -41,192 +48,239 @@ html{
     margin-bottom: 45px;
 }
 
-.form__input:focus{
+.form__input:focus {
     outline: 0;
 }
-::placeholder{
+
+::placeholder {
     color: white;
 }
-.weather-Info-Container{
+
+.weather-Info-Container {
     background-color: rgba(190, 190, 190, 0.6);
     height: 50%;
     max-width: 500px;
     color: var(--primaryColor);
     font-size: 1.25rem;
     padding: 10px;
-    box-shadow: 0px 0px 61px 22px rgba(0,0,0,0.65);
+    box-shadow: 0px 0px 61px 22px rgba(0, 0, 0, 0.65);
     margin: 0 auto;
 }
-.currentInfo{
+
+.temperatureBox__weatherIcon {
+    font-size: 2.5rem;
+}
+
+.currentInfo {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
-.currentInfo__detail{
+
+.currentInfo__detail {
     margin-bottom: 5px;
 }
-.currentInfo__temperatureBox{
+
+.currentInfo__temperatureBox {
     width: 51%;
 }
-.currentInfo__city{
-    color:white;
-}
-.currentInfo__details{
-    margin-top: 20px;
-}
-.temperatureBox__weatherIcon{
+
+.currentInfo__city {
     color: white;
 }
-.forecast{
+
+.currentInfo__details {
+    margin-top: 20px;
+}
+
+.temperatureBox__weatherIcon {
+    color: white;
+}
+
+.forecast {
     display: flex;
     justify-content: center;
     margin-top: 35px;
 }
-.forecast__day{
+
+.forecast__day {
     margin: 0 10px;
     text-align: center;
     color: white;
 }
-.forecast__item{
-    margin:0 5px 5px 5px;
+
+.forecast__item {
+    margin: 0 5px 5px 5px;
     transition: .4s ease;
 }
-.forecast__value{
+
+.forecast__value {
     position: relative;
 }
-.forecast__value::before{
+
+.forecast__value::before {
     content: "";
     position: absolute;
     top: 50%;
     left: 50%;
     opacity: 0;
-    box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.65);
+    box-shadow: 0px 0px 30px 12px rgba(0, 0, 0, 0.65);
     transition: .6s opacity ease;
 }
-.forecast__value:hover{
-    color:yellow;
-    transform:scale(2);
+
+.forecast__value:hover {
+    color: yellow;
+    transform: scale(2);
 }
-.forecast__value:hover::before{
+
+.forecast__value:hover::before {
     opacity: 1;
 }
-.off{
+
+.off {
     display: none;
 }
-.min{
-    color:rgb(50, 86, 117);
+
+.min {
+    color: rgb(50, 86, 117);
 }
-.max{
-    color:rgb(218, 39, 39);
+
+.max {
+    color: rgb(218, 39, 39);
 }
+
 .switchBox {
     color: white;
     float: right;
     margin: 30px;
-    position: relative; 
+    position: relative;
     width: 63px;
-    -webkit-user-select:none; 
-    -moz-user-select:none; 
+    -webkit-user-select: none;
+    -moz-user-select: none;
     -ms-user-select: none;
 }
+
 .switch-checkbox {
     display: none;
 }
+
 .switch-label {
-    display: block; 
-    overflow: hidden; 
+    display: block;
+    overflow: hidden;
     cursor: pointer;
-    border: 2px solid #999999; 
+    border: 2px solid #999999;
     border-radius: 20px;
 }
+
 .switch-inner {
     display: block;
-    width: 200%; 
+    width: 200%;
     margin-left: -100%;
     transition: margin 0.3s ease-in 0s;
 }
-.switch-inner:before, .switch-inner:after {
-    display: block; 
-    float: left; 
-    width: 50%; 
-    height: 16px; 
-    font-size: 14px; 
+
+.switch-inner:before,
+.switch-inner:after {
+    display: block;
+    float: left;
+    width: 50%;
+    height: 16px;
+    font-size: 14px;
     font-weight: bold;
     box-sizing: border-box;
 }
+
 .switch-inner:before {
     content: "°C";
     padding-left: 10px;
     background-color: #000000;
 }
+
 .switch-inner:after {
     content: "°F";
     padding-right: 10px;
-    background-color: #A8A8A8; 
+    background-color: #A8A8A8;
     text-align: right;
 }
+
 .switch-switch {
-    display: block; 
-    width: 18px; 
+    display: block;
+    width: 18px;
     margin: -1px;
     background: #FFFFFF;
-    position: absolute; 
+    position: absolute;
     top: 0;
     bottom: 0;
     right: 43px;
-    border: 2px solid #999999; 
+    border: 2px solid #999999;
     border-radius: 20px;
     transition: all 0.3s ease-in 0s;
 }
-.switch-checkbox:checked + .switch-label .switch-inner {
+
+.switch-checkbox:checked+.switch-label .switch-inner {
     margin-left: 0;
 }
-.switch-checkbox:checked + .switch-label .switch-switch {
-    right: 0px; 
+
+.switch-checkbox:checked+.switch-label .switch-switch {
+    right: 0px;
 }
-@media(min-width:530px){
-    .temperatureBox__tempValue{
+
+@media(min-width:530px) {
+    .temperatureBox__tempValue {
         font-size: 1.25rem;
     }
-    .currentInfo__details{
-        margin-left:50px;
-   }
-   .temperatureBox__tempValue{
-       font-size: 2.06rem;
-   }
-   .off{
-    display: block;
+
+    .currentInfo__details {
+        margin-left: 50px;
     }
+
+    .temperatureBox__tempValue {
+        font-size: 2.06rem;
+    }
+
+    .off {
+        display: block;
+    }
+
     .switchBox {
         width: 94px;
         margin: 30px;
     }
-    .switch-inner:before, .switch-inner:after {
-        height: 34px; 
+
+    .switch-inner:before,
+    .switch-inner:after {
+        height: 34px;
         line-height: 34px;
-        font-size: 17px; 
+        font-size: 17px;
     }
+
     .switch-inner:before {
         padding-left: 15px;
     }
+
     .switch-inner:after {
         padding-right: 15px;
     }
+
     .switch-switch {
-        width: 23px; 
+        width: 23px;
         margin: 5.5px;
         right: 56px;
     }
 }
-@media(min-width:1200px){
-    html{
-        font-size: 18px;;
+
+@media(min-width:1200px) {
+    html {
+        font-size: 18px;
+        ;
     }
-    .title{
+
+    .title {
         font-size: 3.125rem;
         width: 450px;
     }
-    .weather-Info-Container{
+
+    .weather-Info-Container {
         max-width: 650px;
         padding: 30px;
     }
