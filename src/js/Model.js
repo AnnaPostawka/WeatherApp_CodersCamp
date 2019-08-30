@@ -75,7 +75,7 @@ export default class Model {
 
                 this._view.setDateAndTime(this._getlocalTime(data.dt, data.timezone));
                 this._view.setCityAndCountry(data.name, data.sys.country);
-                this._view.setCurrentIcon(data.weather[0].icon);
+                this._view.setCurrentIcon(data.weather[0].id, this._dayOrNight(data.dt, data.timezone, data.sys.sunrise, data.sys.sunset));
                 this._view.setCurrentDescription(data.weather[0].description);
                 this._view.setCurrentTemperature(data.main.temp, tempUnit);
                 this._view.setCurrentHumidity(data.main.humidity, '%');
@@ -161,5 +161,18 @@ export default class Model {
         }
         console.log(temp4Days);
         return temp4Days;
+    }
+
+    //method returning 'day' or 'night' depending on current time, sunrise and sunset
+    _dayOrNight(currentTime, timezoneOffset, sunrise, sunset) {
+        const localCurrentTime = this._getlocalTime(currentTime, timezoneOffset);
+        const localSunrise = this._getlocalTime(sunrise, timezoneOffset);
+        const localSunset = this._getlocalTime(sunset, timezoneOffset);
+
+        if (localSunrise <= localCurrentTime && localCurrentTime < localSunset) {
+            return 'day';
+        } else {
+            return 'night';
+        }
     }
 }
