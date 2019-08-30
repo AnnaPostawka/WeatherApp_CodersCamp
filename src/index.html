@@ -8,11 +8,18 @@
     <title>WeatherApp</title>
     <script src="https://kit.fontawesome.com/c6f9d808e1.js"></script>
     <link rel="stylesheet" href="../src/style/style.css">
-
 </head>
 
 <body>
     <div id="root" class="container">
+        <div class="switchBox">
+            <input type="checkbox" name="switch" class="switch-checkbox" id="switch" checked>
+            <label class="switch-label" for="switch">
+                <span class="switch-inner"></span>
+                <span class="switch-switch"></span>
+            </label>
+        </div>
+
         <h1 class="title">Welcome to the <span class="title__highlight">Weather</span> App</h1>
         <form class="form" action="">
             <input class="form__input" placeholder="Enter your city.." type="text">
@@ -21,64 +28,57 @@
             <div class="currentInfo">
                 <div class="currentInfo__temperatureBox temperatureBox">
                     <i class="temperatureBox__weatherIcon far fa-sun fa-3x"></i>
-                    <span class="temperatureBox__tempValue fahrenheit">64F</span>
-                    <span class="temperatureBox__tempValue celsius">13C</span>
+                    <span class="temperatureBox__tempValue currentTemp">36°C</span>
                 </div>
                 <h2 class="currentInfo__city">Paris, FR</h2>
                 <div class="currentInfo__details">
-                    <div class="currentInfo__wind">Wind:
-                        <span> 6.2 mph</span>
+                    <div class="currentInfo__wind currentInfo__detail">Wind:
+                        <span class="wind-value">6.2 mph</span>
                         <i class="currentInfo__windIcon fas fa-wind"></i>
                     </div>
-                    <div class="currentInfo__humidity">Humidity: <span>42%</span></div>
+                    <div class="currentInfo__humidity currentInfo__detail">Humidity:
+                        <span class="humidity-value">42%</span>
+                    </div>
+                    <div class="currentInfo__pressure currentInfo__detail">Pressure:
+                        <span class="pressure-value">1042hPa</span>
+                    </div>
                 </div>
                 <div class="currentInfo__details">
-                    <div class="currentInfo__date">Friday 8:41</div>
-                    <div class="currentInfo__sky">Clear Sky</div>
+                    <div class="currentInfo__date currentInfo__detail">Friday 8:41</div>
+                    <div class="currentInfo__sky currentInfo__detail">Clear Sky</div>
                 </div>
             </div>
             <div class="forecast">
                 <div class="forecast__day">
-                    <p class="forecast__value">Date</p>
-                    <p class="forecast__value">Min</p>
-                    <p class="forecast__value">Max</p>
+                    <p class="forecast__item">Date</p>
+                    <p class="forecast__item">Min</p>
+                    <p class="forecast__item">Max</p>
                 </div>
                 <div class="forecast__day">
-                    <p class="forecast__value day">27/04</p>
-                    <p class="forecast__value min">29F</p>
-                    <p class="forecast__value max">36F</p>
+                    <p class="forecast__item day">27/04</p>
+                    <p class="forecast__item  forecast__value value min">29°C</p>
+                    <p class="forecast__item  forecast__value value max">36°C</p>
                 </div>
                 <div class="forecast__day ">
-                    <p class="forecast__value day">28/04</p>
-                    <p class="forecast__value min">59F</p>
-                    <p class="forecast__value max">16F</p>
+                    <p class="forecast__item day">28/04</p>
+                    <p class="forecast__item  forecast__value min">59°C</p>
+                    <p class="forecast__item  forecast__value max">16°C</p>
+                </div>
+                <div class="forecast__day ">
+                    <p class="forecast__item day">29/04</p>
+                    <p class="forecast__item  forecast__value min">59°C</p>
+                    <p class="forecast__item  forecast__value max">26°C</p>
                 </div>
                 <div class="forecast__day off">
-                    <p class="forecast__value day">29/04</p>
-                    <p class="forecast__value min">59F</p>
-                    <p class="forecast__value max">26F</p>
-                </div>
-
-                <div class="forecast__day off">
-                    <p class="forecast__value day">29/04</p>
-                    <p class="forecast__value min">59F</p>
-                    <p class="forecast__value max">26F</p>
+                    <p class="forecast__item day">29/04</p>
+                    <p class="forecast__item  forecast__value min">59°C</p>
+                    <p class="forecast__item  forecast__value max">26°C</p>
                 </div>
                 <div class="forecast__day off">
-                    <p class="forecast__value day">29/04</p>
-                    <p class="forecast__value min">59F</p>
-                    <p class="forecast__value max">26F</p>
+                    <p class="forecast__item day">29/04</p>
+                    <p class="forecast__item forecast__value min">59°C</p>
+                    <p class="forecast__item forecast__value max">26°C</p>
                 </div>
-                <!-- <div class="forecast__day off">
-                    <p class="forecast__value day">29/04</p>
-                    <p class="forecast__value">59F</p>
-                    <p class="forecast__value">26F</p>
-                </div>
-                <div class="forecast__day off">
-                    <p class="forecast__value day">29/04</p>
-                    <p class="forecast__value">59F</p>
-                    <p class="forecast__value">26F</p>
-                </div> -->
             </div>
         </div>
     </div>
