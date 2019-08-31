@@ -9,6 +9,8 @@ html{
 }
 :root{
     --primaryColor:rgba(53,75,94,1);
+    --boxShadowColor:rgba(0,0,0,0.65);
+    --switchColor:#999999; 
 }
 .container{
     min-height: 100vh;
@@ -32,12 +34,12 @@ html{
 }
 .form__input{
     text-align: center;
-    background-color: rgb(128, 128, 128);
+    background-color: rgb(104, 103, 103);
     color: white;
     border: none;
     border-radius: 5px;
     font-size: 0.9rem;
-    padding: 7px 0;
+    padding: 7px 5px;
     margin-bottom: 45px;
 }
 
@@ -54,8 +56,13 @@ html{
     color: var(--primaryColor);
     font-size: 1.25rem;
     padding: 10px;
-    box-shadow: 0px 0px 61px 22px rgba(0,0,0,0.65);
+    box-shadow: 0px 0px 61px 22px var(--boxShadowColor);
     margin: 0 auto;
+    transform: scale(0);
+    transition: 0.5s transform .4s;
+}
+.weather-Info-Container--active{
+    transform: scale(1);
 }
 .currentInfo{
     display: flex;
@@ -93,6 +100,7 @@ html{
 }
 .forecast__value{
     position: relative;
+    cursor: pointer;
 }
 .forecast__value::before{
     content: "";
@@ -100,12 +108,16 @@ html{
     top: 50%;
     left: 50%;
     opacity: 0;
-    box-shadow: 0px 0px 30px 12px rgba(0,0,0,0.65);
+    box-shadow: 0px 0px 30px 12px var(--boxShadowColor);
     transition: .6s opacity ease;
 }
-.forecast__value:hover{
+.forecast__value-degrees{
+    display: inline-block;
+    transition: transform 0.6s ease;
+}
+.forecast__value:hover >.forecast__value-degrees {
     color:yellow;
-    transform:scale(2);
+    transform:scale(1.5) translateX(5px);
 }
 .forecast__value:hover::before{
     opacity: 1;
@@ -136,7 +148,7 @@ html{
     display: block; 
     overflow: hidden; 
     cursor: pointer;
-    border: 2px solid #999999; 
+    border: 2px solid var(--switchColor);
     border-radius: 20px;
 }
 .switch-inner {
@@ -174,7 +186,7 @@ html{
     top: 0;
     bottom: 0;
     right: 43px;
-    border: 2px solid #999999; 
+    border: 2px solid var(--switchColor);
     border-radius: 20px;
     transition: all 0.3s ease-in 0s;
 }
@@ -185,6 +197,11 @@ html{
     right: 0px; 
 }
 @media(min-width:530px){
+    .form__input{
+        font-size: 1.2rem;
+        padding: 10px 8px;
+        margin-bottom: 65px;
+    }
     .temperatureBox__tempValue{
         font-size: 1.25rem;
     }
@@ -221,6 +238,11 @@ html{
 @media(min-width:1200px){
     html{
         font-size: 18px;;
+    }
+    .form__input{
+        font-size: 1.3rem;
+        padding: 13px 10px;
+        margin-bottom: 65px;
     }
     .title{
         font-size: 3.125rem;
