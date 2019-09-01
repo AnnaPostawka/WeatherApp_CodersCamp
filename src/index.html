@@ -6,10 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>WeatherApp</title>
-    <script src="https://kit.fontawesome.com/c6f9d808e1.js"></script>
-    <link rel="stylesheet" href="../src/style/style.css">
-    <link rel="stylesheet" href="./style/weather-icons-wind.min.css">
-    <link rel="stylesheet" href="./style/weather-icons.min.css">
 </head>
 
 <body>
@@ -21,12 +17,11 @@
                 <span class="switch-switch"></span>
             </label>
         </div>
-
         <h1 class="title">Welcome to the <span class="title__highlight">Weather</span> App</h1>
         <form class="form" action="">
             <input class="form__input" placeholder="Enter your city.." type="text">
         </form>
-        <div class="weather-Info-Container">
+        <div class="weather-Info-Container weather-Info-Container--active">
             <div class="currentInfo">
                 <div class="currentInfo__temperatureBox temperatureBox">
                     <i class="temperatureBox__weatherIcon"></i>
@@ -79,7 +74,7 @@
             </div>
         </div>
     </div>
-    <script type="module" src="js/app.js"></script>
+    <script type="module" src="../src/js/app.js"></script>
 </body>
 
 </html>

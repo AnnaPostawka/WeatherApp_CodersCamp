@@ -8,9 +8,10 @@ html {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
 }
-
-:root {
-    --primaryColor: rgba(53, 75, 94, 1);
+:root{
+    --primaryColor:rgba(53,75,94,1);
+    --boxShadowColor:rgba(0,0,0,0.65);
+    --switchColor:#999999; 
 }
 
 .container {
@@ -39,12 +40,12 @@ html {
 
 .form__input {
     text-align: center;
-    background-color: rgb(128, 128, 128);
+    background-color: rgb(104, 103, 103);
     color: white;
     border: none;
     border-radius: 5px;
     font-size: 0.9rem;
-    padding: 7px 0;
+    padding: 7px 5px;
     margin-bottom: 45px;
 }
 
@@ -63,8 +64,13 @@ html {
     color: var(--primaryColor);
     font-size: 1.25rem;
     padding: 10px;
-    box-shadow: 0px 0px 61px 22px rgba(0, 0, 0, 0.65);
+    box-shadow: 0px 0px 61px 22px var(--boxShadowColor);
     margin: 0 auto;
+    transform: scale(0);
+    transition: 0.5s transform .4s;
+}
+.weather-Info-Container--active{
+    transform: scale(1);
 }
 
 .temperatureBox__weatherIcon {
@@ -85,8 +91,30 @@ html {
     width: 51%;
 }
 
-.currentInfo__city {
-    color: white;
+.currentTemp{
+    position: relative;
+    display: inline-block;
+    transition: .5s ease;
+}
+.currentTemp:hover {
+    color:yellow;
+    transform:scale(1.3) translateX(5px);
+}
+.currentTemp::before{
+    z-index: -1;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    opacity: 0;
+    box-shadow: 0px 0px 30px 12px var(--boxShadowColor);
+    transition: .6s opacity ease;
+}
+.currentTemp:hover::before{
+    opacity: 1;
+}
+.currentInfo__city{
+    color:white;
 }
 
 .currentInfo__details {
@@ -108,33 +136,8 @@ html {
     text-align: center;
     color: white;
 }
-
-.forecast__item {
-    margin: 0 5px 5px 5px;
-    transition: .4s ease;
-}
-
-.forecast__value {
-    position: relative;
-}
-
-.forecast__value::before {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    opacity: 0;
-    box-shadow: 0px 0px 30px 12px rgba(0, 0, 0, 0.65);
-    transition: .6s opacity ease;
-}
-
-.forecast__value:hover {
-    color: yellow;
-    transform: scale(2);
-}
-
-.forecast__value:hover::before {
-    opacity: 1;
+.forecast__item{
+    margin:0 5px 5px 5px;
 }
 
 .off {
@@ -168,7 +171,7 @@ html {
     display: block;
     overflow: hidden;
     cursor: pointer;
-    border: 2px solid #999999;
+    border: 2px solid var(--switchColor);
     border-radius: 20px;
 }
 
@@ -212,7 +215,7 @@ html {
     top: 0;
     bottom: 0;
     right: 43px;
-    border: 2px solid #999999;
+    border: 2px solid var(--switchColor);
     border-radius: 20px;
     transition: all 0.3s ease-in 0s;
 }
@@ -224,9 +227,13 @@ html {
 .switch-checkbox:checked+.switch-label .switch-switch {
     right: 0px;
 }
-
-@media(min-width:530px) {
-    .temperatureBox__tempValue {
+@media(min-width:530px){
+    .form__input{
+        font-size: 1.2rem;
+        padding: 10px 8px;
+        margin-bottom: 65px;
+    }
+    .temperatureBox__tempValue{
         font-size: 1.25rem;
     }
 
@@ -274,8 +281,12 @@ html {
         font-size: 18px;
         ;
     }
-
-    .title {
+    .form__input{
+        font-size: 1.3rem;
+        padding: 13px 10px;
+        margin-bottom: 65px;
+    }
+    .title{
         font-size: 3.125rem;
         width: 450px;
     }

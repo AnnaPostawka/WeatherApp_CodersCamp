@@ -15,19 +15,23 @@ module.exports = {
     })],
     module: {
         rules: [{
-                test: /\.css$/,
-                use: ["style-loader", "css-loader"]
-            },
-            {
-                test: /\.m?js$/,
-                exclude: /(node_modules|bower_components)/,
-                use: {
-                    loader: "babel-loader",
-                    options: {
-                        presets: ["@babel/preset-env"]
-                    }
+            test: /\.css$/i,
+            use: ["style-loader", "css-loader"]
+        },
+        {
+            test: /\.m?js$/,
+            exclude: /(node_modules|bower_components)/,
+            use: {
+                loader: "babel-loader",
+                options: {
+                    presets: ["@babel/preset-env"]
                 }
             }
+        },
+        {
+            test: /\.(png|woff|woff2|eot|ttf|svg|jpg)$/,
+            use: ['url-loader?limit=100000']
+        },
         ]
     }
 };

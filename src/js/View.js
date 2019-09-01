@@ -1,8 +1,6 @@
 export default class View {
     constructor() {
-
         /* TEST */
-        /*
         this.setDateAndTime('Wednesday 17:10');
         this.setCityAndCountry('Wrocław', 'PL');
         this.setCurrentIcon(200, 'day');
@@ -30,12 +28,7 @@ export default class View {
             temp_max: 26
         }]
         this.set5DaysTemperature(this.temp, '&degC');
-        */
-
     }
-
-
-
     setDateAndTime(date) {
         document.querySelector('.currentInfo__date').innerHTML = date;
     }
@@ -54,7 +47,6 @@ export default class View {
         document.querySelector('.currentTemp').innerHTML = `${temperature}${unit}`;
     }
     setCurrentWindSpeed(windSpeed, unit) {
-
         document.querySelector('.wind-value').innerHTML = `${windSpeed} ${unit}`;
     }
     setCurrentWindDeg(windDeg) {
@@ -70,7 +62,6 @@ export default class View {
         document.querySelector('.pressure-value').innerHTML = `${pressure} ${unit}`
     }
     set5DaysTemperature(temp, unit) {
-
         for (let i = 0; i < 4; i++) {
             document.querySelector('.forecast').querySelectorAll('.day')[i].innerHTML = temp[i].day;
             document.querySelector('.forecast').querySelectorAll('.min')[i].innerHTML = temp[i].temp_min + unit;
