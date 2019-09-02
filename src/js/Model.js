@@ -46,25 +46,7 @@ export default class Model {
                 requestForecast = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&units=${this._units}&APPID=${this._apiKey}`;
             }
 
-            let tempUnit;
-            let windSpeedUnit;
-
-            switch (this._units) {
-                case 'default':
-                    tempUnit = 'K';
-                    windSpeedUnit = 'm/s';
-                    break;
-                case 'metric':
-                    tempUnit = String.fromCharCode(176) + 'C';
-                    windSpeedUnit = 'm/s';
-                    break;
-                case 'imperial':
-                    tempUnit = String.fromCharCode(176) + 'F';
-                    windSpeedUnit = 'mph';
-                    break;
-                default:
-                    console.log('wrong unit')
-            }
+            const [tempUnit, windSpeedUnit] = this._getUnitStrings();
 
             const weatherData = await this._weatherAPIRequest(request);
 
@@ -165,5 +147,28 @@ export default class Model {
         } else {
             return 'night';
         }
+    }
+
+    _getUnitStrings() {
+        let tempUnit;
+        let windSpeedUnit;
+
+        switch (this._units) {
+            case 'default':
+                tempUnit = 'K';
+                windSpeedUnit = 'm/s';
+                break;
+            case 'metric':
+                tempUnit = String.fromCharCode(176) + 'C';
+                windSpeedUnit = 'm/s';
+                break;
+            case 'imperial':
+                tempUnit = String.fromCharCode(176) + 'F';
+                windSpeedUnit = 'mph';
+                break;
+            default:
+                console.log('wrong unit')
+        }
+        return [tempUnit, windSpeedUnit];
     }
 }
