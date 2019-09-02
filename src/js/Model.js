@@ -32,20 +32,8 @@ export default class Model {
     //or coords ['lat', 'long'] 
     async _getWeatherData(location) {
         return new Promise(async (resolve) => {
-            
-            let request;
-            let requestForecast;
-            if (location.length == 1) {
-                const city = location[0];
-                request = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=${this._units}&APPID=${this._apiKey}`;
-                requestForecast = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=${this._units}&APPID=${this._apiKey}`;
-            } else {
-                const lat = location[0];
-                const long = location[1];
-                request = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=${this._units}&APPID=${this._apiKey}`;
-                requestForecast = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&units=${this._units}&APPID=${this._apiKey}`;
-            }
 
+            const [request, requestForecast] = this._getApiRequestsForLocation(location);
             const [tempUnit, windSpeedUnit] = this._getUnitStrings();
 
             const weatherData = await this._weatherAPIRequest(request);
@@ -170,5 +158,21 @@ export default class Model {
                 console.log('wrong unit')
         }
         return [tempUnit, windSpeedUnit];
+    }
+
+    _getApiRequestsForLocation(location) {
+        let request;
+        let requestForecast;
+        if (location.length == 1) {
+            const city = location[0];
+            request = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=${this._units}&APPID=${this._apiKey}`;
+            requestForecast = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=${this._units}&APPID=${this._apiKey}`;
+        } else {
+            const lat = location[0];
+            const long = location[1];
+            request = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=${this._units}&APPID=${this._apiKey}`;
+            requestForecast = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&units=${this._units}&APPID=${this._apiKey}`;
+        }
+        return [request, requestForecast];
     }
 }
