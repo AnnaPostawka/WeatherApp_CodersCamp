@@ -14,6 +14,7 @@ export default class Model {
         const data = await this._getWeatherData(location)
         this._weatherData = data[0];
         this._forecastData = data[1];
+        this._callViewMethods(data[0], data[1]);
     }
 
     //unit is set to new unit
@@ -25,6 +26,7 @@ export default class Model {
             const data = await this._getWeatherData([this._weatherData.name]);
             this._weatherData = data[0];
             this._forecastData = data[1];
+            this._callViewMethods(data[0], data[1]);
         }
     }
 
@@ -34,24 +36,9 @@ export default class Model {
         return new Promise(async (resolve) => {
 
             const [request, requestForecast] = this._getApiRequestsForLocation(location);
-            const [tempUnit, windSpeedUnit] = this._getUnitStrings();
-
             const weatherData = await this._weatherAPIRequest(request);
-
-            this._view.setDateAndTime(this._getlocalTime(weatherData.dt, weatherData.timezone));
-            this._view.setCityAndCountry(weatherData.name, weatherData.sys.country);
-            this._view.setCurrentIcon(weatherData.weather[0].id, this._dayOrNight(weatherData.dt, weatherData.timezone, weatherData.sys.sunrise, weatherData.sys.sunset));
-            this._view.setCurrentDescription(weatherData.weather[0].description);
-            this._view.setCurrentTemperature(weatherData.main.temp, tempUnit);
-            this._view.setCurrentHumidity(weatherData.main.humidity, '%');
-            this._view.setCurrentWindSpeed(weatherData.wind.speed, windSpeedUnit);
-            this._view.setCurrentWindDeg(weatherData.wind.deg, String.fromCharCode(176));
-            this._view.setCurrentPressure(weatherData.main.pressure, 'hPa');
-
             const forecastData = await this._weatherAPIRequest(requestForecast);
             const minMaxTemps = this._forecastMinMaxTemps(forecastData);
-            this._view.set4DaysTemperature(minMaxTemps, tempUnit);
-
             console.log([weatherData, minMaxTemps]);
             resolve([weatherData, minMaxTemps]);
         })
@@ -174,5 +161,22 @@ export default class Model {
             requestForecast = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&units=${this._units}&APPID=${this._apiKey}`;
         }
         return [request, requestForecast];
+    }
+
+    _callViewMethods(weatherData, forecastData) {
+        console.log('calling view methods');
+        
+        const [tempUnit, windSpeedUnit] = this._getUnitStrings();
+
+        this._view.setDateAndTime(this._getlocalTime(weatherData.dt, weatherData.timezone));
+        this._view.setCityAndCountry(weatherData.name, weatherData.sys.country);
+        this._view.setCurrentIcon(weatherData.weather[0].id, this._dayOrNight(weatherData.dt, weatherData.timezone, weatherData.sys.sunrise, weatherData.sys.sunset));
+        this._view.setCurrentDescription(weatherData.weather[0].description);
+        this._view.setCurrentTemperature(weatherData.main.temp, tempUnit);
+        this._view.setCurrentHumidity(weatherData.main.humidity, '%');
+        this._view.setCurrentWindSpeed(weatherData.wind.speed, windSpeedUnit);
+        this._view.setCurrentWindDeg(weatherData.wind.deg, String.fromCharCode(176));
+        this._view.setCurrentPressure(weatherData.main.pressure, 'hPa');
+        this._view.set4DaysTemperature(forecastData, tempUnit);
     }
 }
