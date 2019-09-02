@@ -30,7 +30,7 @@ module.exports = {
         },
         {
             test: /\.(png|woff|woff2|eot|ttf|svg|jpg)$/,
-            use: ['url-loader?limit=100000']
+            use: ['url-loader?limit=200000']
         },
         ]
     }

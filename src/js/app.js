@@ -8,3 +8,11 @@ import "../style/weather-icons.min.css";
 const view = new View();
 const model = new Model(view);
 const appController = new Controller(model, view);
+
+const addToWeatherModalClass = () => {
+    const weatherModal = document.querySelector('.weather-Info-Container');
+    if (weatherModal.classList.length != 2) {
+        weatherModal.classList.add('weather-Info-Container--active')
+    }
+}
+const timeout = setTimeout(() => { addToWeatherModalClass() }, 2000);

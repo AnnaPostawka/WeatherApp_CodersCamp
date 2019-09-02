@@ -3,7 +3,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-
 html {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
@@ -13,14 +12,12 @@ html {
     --boxShadowColor:rgba(0,0,0,0.65);
     --switchColor:#999999; 
 }
-
 .container {
     min-height: 100vh;
     background-image: url("../assets/images/fog.jpg");
     background-position: 50% 50%;
     padding-bottom: 20px;
 }
-
 .title {
     display: block;
     width: 250px;
@@ -33,11 +30,9 @@ html {
 .title__highlight {
     color: rgb(101, 183, 231);
 }
-
 .form {
     text-align: center;
 }
-
 .form__input {
     text-align: center;
     background-color: rgb(104, 103, 103);
@@ -48,15 +43,12 @@ html {
     padding: 7px 5px;
     margin-bottom: 45px;
 }
-
 .form__input:focus {
     outline: 0;
 }
-
 ::placeholder {
     color: white;
 }
-
 .weather-Info-Container {
     background-color: rgba(190, 190, 190, 0.6);
     height: 50%;
@@ -67,30 +59,27 @@ html {
     box-shadow: 0px 0px 61px 22px var(--boxShadowColor);
     margin: 0 auto;
     transform: scale(0);
+    opacity: 0;
     transition: 0.5s transform .4s;
 }
 .weather-Info-Container--active{
+    opacity: 1;
     transform: scale(1);
 }
-
 .temperatureBox__weatherIcon {
     font-size: 2.5rem;
 }
-
 .currentInfo {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
 }
-
 .currentInfo__detail {
     margin-bottom: 5px;
 }
-
 .currentInfo__temperatureBox {
     width: 51%;
 }
-
 .currentTemp{
     position: relative;
     display: inline-block;
@@ -124,13 +113,11 @@ html {
 .temperatureBox__weatherIcon {
     color: white;
 }
-
 .forecast {
     display: flex;
     justify-content: center;
     margin-top: 35px;
 }
-
 .forecast__day {
     margin: 0 10px;
     text-align: center;
@@ -139,19 +126,15 @@ html {
 .forecast__item{
     margin:0 5px 5px 5px;
 }
-
 .off {
     display: none;
 }
-
 .min {
     color: rgb(50, 86, 117);
 }
-
 .max {
     color: rgb(218, 39, 39);
 }
-
 .switchBox {
     color: white;
     float: right;
@@ -162,11 +145,9 @@ html {
     -moz-user-select: none;
     -ms-user-select: none;
 }
-
 .switch-checkbox {
     display: none;
 }
-
 .switch-label {
     display: block;
     overflow: hidden;
@@ -174,14 +155,12 @@ html {
     border: 2px solid var(--switchColor);
     border-radius: 20px;
 }
-
 .switch-inner {
     display: block;
     width: 200%;
     margin-left: -100%;
     transition: margin 0.3s ease-in 0s;
 }
-
 .switch-inner:before,
 .switch-inner:after {
     display: block;
@@ -192,20 +171,17 @@ html {
     font-weight: bold;
     box-sizing: border-box;
 }
-
 .switch-inner:before {
     content: "°C";
     padding-left: 10px;
     background-color: #000000;
 }
-
 .switch-inner:after {
     content: "°F";
     padding-right: 10px;
     background-color: #A8A8A8;
     text-align: right;
 }
-
 .switch-switch {
     display: block;
     width: 18px;
@@ -219,11 +195,9 @@ html {
     border-radius: 20px;
     transition: all 0.3s ease-in 0s;
 }
-
 .switch-checkbox:checked+.switch-label .switch-inner {
     margin-left: 0;
 }
-
 .switch-checkbox:checked+.switch-label .switch-switch {
     right: 0px;
 }
@@ -236,50 +210,40 @@ html {
     .temperatureBox__tempValue{
         font-size: 1.25rem;
     }
-
     .currentInfo__details {
         margin-left: 50px;
     }
-
     .temperatureBox__tempValue {
         font-size: 2.06rem;
     }
-
     .off {
         display: block;
     }
-
     .switchBox {
         width: 94px;
         margin: 30px;
     }
-
     .switch-inner:before,
     .switch-inner:after {
         height: 34px;
         line-height: 34px;
         font-size: 17px;
     }
-
     .switch-inner:before {
         padding-left: 15px;
     }
-
     .switch-inner:after {
         padding-right: 15px;
     }
-
     .switch-switch {
         width: 23px;
         margin: 5.5px;
         right: 56px;
     }
 }
-
 @media(min-width:1200px) {
     html {
         font-size: 18px;
-        ;
     }
     .form__input{
         font-size: 1.3rem;
@@ -290,7 +254,6 @@ html {
         font-size: 3.125rem;
         width: 450px;
     }
-
     .weather-Info-Container {
         max-width: 650px;
         padding: 30px;
