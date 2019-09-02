@@ -53,8 +53,8 @@
                 </div>
                 <div class="forecast__day">
                     <p class="forecast__item day"></p>
-                    <p class="forecast__item  forecast__value value min"></p>
-                    <p class="forecast__item  forecast__value value max"></p>
+                    <p class="forecast__item  forecast__value min"></p>
+                    <p class="forecast__item  forecast__value max"></p>
                 </div>
                 <div class="forecast__day ">
                     <p class="forecast__item day"></p>
@@ -74,6 +74,18 @@
             </div>
         </div>
     </div>
+    <script>
+        function activatePlacesSearch() {
+            const input = document.querySelector(".form__input");
+            const options = {
+                types: ['(cities)']
+            };
+            const autocomplete = new google.maps.places.Autocomplete(input, options);
+        }
+    </script>
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5RNzk2x-lrcR_-NrBj2Whrv5Dfq05hE8&libraries=places&callback=activatePlacesSearch">
+        </script>
 </body>
 
 </html>

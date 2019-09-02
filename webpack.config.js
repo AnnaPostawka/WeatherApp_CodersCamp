@@ -2,7 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    entry: "./src/js/app.js",
+    entry: ["@babel/polyfill", "./src/js/app.js"],
     watch: true,
     mode: "development",
     output: {
