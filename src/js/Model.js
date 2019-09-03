@@ -38,18 +38,31 @@ export default class Model {
             const [request, requestForecast] = this._getApiRequestsForLocation(location);
             const weatherData = await this._weatherAPIRequest(request);
             const forecastData = await this._weatherAPIRequest(requestForecast);
-            const minMaxTemps = this._forecastMinMaxTemps(forecastData);
-            console.log([weatherData, minMaxTemps]);
-            resolve([weatherData, minMaxTemps]);
+            if (weatherData && forecastData) {
+                const minMaxTemps = this._forecastMinMaxTemps(forecastData);
+                console.log([weatherData, minMaxTemps]);
+                resolve([weatherData, minMaxTemps]);
+            }
         })
 
     }
 
     //method fetching weather data
     async _weatherAPIRequest(request) {
-        const response = await fetch(request);
-        const data = await response.json();
-        return data;
+        try {
+            const response = await fetch(request);
+            if (response.status !== 200) {
+                throw new Error("Response error", response.status)
+            } else {
+                const response = await fetch(request);
+                const data = await response.json();
+                return data;
+            }
+        } catch (err) {
+            console.log(err.message);
+            console.log('try another city')
+            //call view method displaying wrong location info
+        }
     }
     _getlocalTime(datetime, timezone) {
 
