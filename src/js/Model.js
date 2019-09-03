@@ -51,13 +51,11 @@ export default class Model {
         const data = await response.json();
         return data;
     }
-
     _getlocalTime(datetime, timezone) {
 
         const now = new Date(datetime * 1000);
         now.setMinutes(now.getMinutes() + now.getTimezoneOffset());
         now.setMinutes(now.getMinutes() + timezone / 60);
-
         return now;
     }
 
@@ -99,7 +97,6 @@ export default class Model {
                     break;
             }
         });
-
         for (let i = 1; i < dates.length - 1; i++) {
             temp4Days.push({
                 date: dates[i],
@@ -107,10 +104,8 @@ export default class Model {
                 temp_max: Math.max(...allTemps[i]),
             });
         }
-        console.log(temp4Days);
         return temp4Days;
     }
-
     //method returning 'day' or 'night' depending on current time, sunrise and sunset
     _dayOrNight(currentTime, timezoneOffset, sunrise, sunset) {
         const localCurrentTime = this._getlocalTime(currentTime, timezoneOffset);
