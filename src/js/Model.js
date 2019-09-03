@@ -163,7 +163,7 @@ export default class Model {
         
         const [tempUnit, windSpeedUnit] = this._getUnitStrings();
 
-        this._view.setDateAndTime(this._getlocalTime(weatherData.dt, weatherData.timezone));
+        this._view.setDateAndTime(this._formatDate(this._getlocalTime(weatherData.dt, weatherData.timezone)));
         this._view.setCityAndCountry(weatherData.name, weatherData.sys.country);
         this._view.setCurrentIcon(weatherData.weather[0].id, this._dayOrNight(weatherData.dt, weatherData.timezone, weatherData.sys.sunrise, weatherData.sys.sunset));
         this._view.setCurrentDescription(weatherData.weather[0].description);
@@ -174,4 +174,10 @@ export default class Model {
         this._view.setCurrentPressure(weatherData.main.pressure, 'hPa');
         this._view.set4DaysTemperature(forecastData, tempUnit);
     }
+
+    _formatDate(date) {
+        const dateFormat = require('dateformat');
+        return dateFormat(date, "dddd yyyy.mm.dd h:MM:ss TT");
+    }
+
 }
