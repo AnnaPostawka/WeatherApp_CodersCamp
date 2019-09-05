@@ -77,4 +77,14 @@ export default class View {
             document.querySelector('.forecast').querySelectorAll('.max')[i].innerHTML = temp[i].temp_max + unit;
         }
     }
+
+
+    setInputValidationMessage(isValid) {
+        var cityInput = document.querySelector('.form__input');
+        if (isValid) {
+            cityInput.setCustomValidity("");
+        } else {
+            cityInput.setCustomValidity("We cannot find what you're looking for, sorry! Try other city.");
+        }
+    }
 }
