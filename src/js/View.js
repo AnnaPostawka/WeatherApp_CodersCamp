@@ -87,28 +87,13 @@ export default class View {
         }
     }
 
-
-    setInputValidationMessage(isValid) {
-        const cityInput = document.querySelector('.form__input');
-        if (isValid) {
-            cityInput.setCustomValidity("");
-        } else {
-            cityInput.setCustomValidity("We cannot find what you're looking for, sorry! Try other city.");
-        }
+    showWrongCityAlert(){
+        const sweetalert = require('sweetalert');
+        sweetalert({
+            title: "Ooops",
+            text: "We cannot find what you're looking for, sorry! Try other city.",
+            icon: "error",
+          });
     }
-
-    resetFields() {
-        this.setDateAndTime("");
-        this._setCityAndCountry("");
-        this.setCurrentDescription("");
-        this._setCurrentTemperature("");
-        this._setCurrentWindSpeed("", "");
-        this._setCurrentHumidity("", "");
-        this._setCurrentPressure("", "");
-
-        /* Brakuje setCurrentIcon, setCurrentWindDeg, set5DaysTemperature */
-
-    }
-
 
 }

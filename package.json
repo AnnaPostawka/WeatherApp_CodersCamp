@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
-    "dateformat": "^3.0.3"
+    "dateformat": "^3.0.3",
+    "sweetalert": "^2.1.2"
   }
 }

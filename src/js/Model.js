@@ -47,7 +47,7 @@ export default class Model {
             } catch (err) {
                 console.log(err.message);
                 console.log('try another city')
-                //call view method displaying wrong location info
+                this._view.showWrongCityAlert();
             }
         })
 
