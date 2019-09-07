@@ -4,7 +4,7 @@ A weather forecast app built with vanilla Javascript.
 Created as one of the projects during CodersCamp 2019 - a web development bootcamp organized by [CodersCrew](https://coderscrew.pl/) in Wrocław, Poland.
 
 ### In order to run our application at your local machine you have to clone this repository firstly
-The easiest way to achieve that is to use the command below      
+The easiest way to achieve this is to use the command below      
 
 ``` git clone https://github.com/anna-postawka/WeatherApp_CodersCamp.git ```
 
