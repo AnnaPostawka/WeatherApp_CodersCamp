@@ -188,6 +188,7 @@ export default class Model {
         this._view.setCurrentWindDeg(weatherData.wind.deg, String.fromCharCode(176));
         this._view.setCurrentPressure(weatherData.main.pressure, 'hPa');
         this._view.set4DaysTemperature(forecastData, tempUnit);
+        this._view.changeBgImage(this._dayOrNight(weatherData.dt, weatherData.timezone, weatherData.sys.sunrise, weatherData.sys.sunset));
     }
 
     _formatDate(date) {

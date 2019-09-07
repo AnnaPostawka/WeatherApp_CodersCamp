@@ -96,4 +96,12 @@ export default class View {
           });
     }
 
+    changeBgImage(dayOrNight) {
+        if (dayOrNight === 'day') {
+            document.querySelector('.container').style.backgroundImage = 'url("../src/assets/images/fog.jpg")';
+        } else {
+            document.querySelector('.container').style.backgroundImage = 'url("../src/assets/images/night.jpg")';
+        }
+    }
+
 }
