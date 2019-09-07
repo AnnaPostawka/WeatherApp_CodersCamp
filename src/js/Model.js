@@ -36,12 +36,18 @@ export default class Model {
         return new Promise(async (resolve) => {
 
             const [request, requestForecast] = this._getApiRequestsForLocation(location);
-            const weatherData = await this._weatherAPIRequest(request);
-            const forecastData = await this._weatherAPIRequest(requestForecast);
-            if (weatherData && forecastData) {
-                const minMaxTemps = this._forecastMinMaxTemps(forecastData);
-                console.log([weatherData, minMaxTemps]);
-                resolve([weatherData, minMaxTemps]);
+            try {
+                const weatherData = await this._weatherAPIRequest(request);
+                const forecastData = await this._weatherAPIRequest(requestForecast);
+                if (weatherData && forecastData) {
+                    const minMaxTemps = this._forecastMinMaxTemps(forecastData);
+                    console.log([weatherData, minMaxTemps]);
+                    resolve([weatherData, minMaxTemps]);
+                }
+            } catch (err) {
+                console.log(err.message);
+                console.log('try another city')
+                //call view method displaying wrong location info
             }
         })
 
@@ -49,20 +55,16 @@ export default class Model {
 
     //method fetching weather data
     async _weatherAPIRequest(request) {
-        try {
+
+        const response = await fetch(request);
+        if (response.status !== 200) {
+            throw new Error("Response error", response.status)
+        } else {
             const response = await fetch(request);
-            if (response.status !== 200) {
-                throw new Error("Response error", response.status)
-            } else {
-                const response = await fetch(request);
-                const data = await response.json();
-                return data;
-            }
-        } catch (err) {
-            console.log(err.message);
-            console.log('try another city')
-            //call view method displaying wrong location info
+            const data = await response.json();
+            return data;
         }
+
     }
     _getlocalTime(datetime, timezone) {
 
