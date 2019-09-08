@@ -12,13 +12,9 @@ export default class View {
     }
 
     setCityAndCountry(city, country) {
-        // this._setCityAndCountry(`${city}, ${country}`);
         this._setInnerHTML('.currentInfo__city', `${city}, ${country}`);
 
     }
-    // _setCityAndCountry(innerHTML) {
-    //     this._setInnerHTML('.currentInfo__city', innerHTML);
-    // }
 
     setCurrentIcon(id, dayOrNight) {
         var elem = document.querySelector('.temperatureBox__weatherIcon');
@@ -27,27 +23,17 @@ export default class View {
     }
 
     setCurrentDescription(description) {
-        // document.querySelector('.currentInfo__sky').innerHTML = description;
         this._setInnerHTML('.currentInfo__sky', description);
 
     }
 
     setCurrentTemperature(temperature, unit) {
         this._setInnerHTML('.currentTemp', `${temperature}${unit}`)
-        // this._setCurrentTemperature(`${temperature}${unit}`);
     }
-    // _setCurrentTemperature(innerHTML) {
-    //     this._setInnerHTML('.currentTemp', innerHTML)
-    // }
 
     setCurrentWindSpeed(windSpeed, unit) {
         this._setInnerHTML('.wind-value', `Wind: ${windSpeed} ${unit}`);
-        // this._setCurrentWindSpeed("Wind: ", `Wind: ${windSpeed} ${unit}`);
     }
-    // _setCurrentWindSpeed(label, innerHTML) {
-    //     this._setInnerHTML('.currentInfo__wind', label);
-    //     this._setInnerHTML('.wind-value', innerHTML);
-    // }
 
     setCurrentWindDeg(windDeg) {
         var elem = document.querySelector('.currentInfo__windIcon');
@@ -57,22 +43,12 @@ export default class View {
     }
 
     setCurrentHumidity(humidity, unit) {
-        // this._setCurrentHumidity("Humidity: ", `${humidity}${unit}`);
         this._setInnerHTML('.humidity-value', `Humidity: ${humidity}${unit}`);
     }
-    // _setCurrentHumidity(label, innerHTML) {
-    //     this._setInnerHTML('.currentInfo__humidity', label);
-    //     this._setInnerHTML('.humidity-value', innerHTML);
-    // }
 
     setCurrentPressure(pressure, unit) {
-        // this._setCurrentPressure("Pressure: ", `${pressure} ${unit}`);
         this._setInnerHTML('.pressure-value', `Pressure: ${pressure} ${unit}`);
     }
-    // _setCurrentPressure(label, innerHTML) {
-    //     this._setInnerHTML('.currentInfo__pressure', label);
-    //     this._setInnerHTML('.pressure-value', innerHTML);
-    // }
 
     set4DaysTemperature(temp, unit) {
         const labels = document.querySelector('.forecast__day');
