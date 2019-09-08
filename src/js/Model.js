@@ -10,96 +10,61 @@ export default class Model {
 
     //location is an array with city name ['wroclaw']
     //or coords ['lat', 'long'] 
-    changedLocation(location) {
-        this._getWeatherData(location)
-            .then((data) => {
-                this._weatherData = data[0];
-                this._forecastData = data[1];
-            });
+    async changedLocation(location) {
+        const data = await this._getWeatherData(location)
+        this._weatherData = data[0];
+        this._forecastData = data[1];
+        this._callViewMethods(data[0], data[1]);
     }
 
     //unit is set to new unit
     //if city has been already saved in weatherData
     //metod for getting weatherData is called for this city
-    changedUnits(unit) {
+    async changedUnits(unit) {
         this._units = unit;
         if (this._weatherData) {
-            this._getWeatherData([this._weatherData.name])
-                .then((data) => {
-                    this._weatherData = data[0];
-                    this._forecastData = data[1];
-                });
+            const data = await this._getWeatherData([this._weatherData.name]);
+            this._weatherData = data[0];
+            this._forecastData = data[1];
+            this._callViewMethods(data[0], data[1]);
         }
     }
 
     //location is an array with city name ['wroclaw']
     //or coords ['lat', 'long'] 
     async _getWeatherData(location) {
-        let request;
-        let requestForecast;
-        if (location.length == 1) {
-            const city = location[0];
-            request = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=${this._units}&APPID=${this._apiKey}`;
-            requestForecast = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=${this._units}&APPID=${this._apiKey}`;
-        } else {
-            const lat = location[0];
-            const long = location[1];
-            request = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=${this._units}&APPID=${this._apiKey}`;
-            requestForecast = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&units=${this._units}&APPID=${this._apiKey}`;
-        }
+        return new Promise(async (resolve) => {
 
-        let tempUnit;
-        let windSpeedUnit;
+            const [request, requestForecast] = this._getApiRequestsForLocation(location);
+            try {
+                const weatherData = await this._weatherAPIRequest(request);
+                const forecastData = await this._weatherAPIRequest(requestForecast);
+                if (weatherData && forecastData) {
+                    const minMaxTemps = this._forecastMinMaxTemps(forecastData);
+                    console.log([weatherData, minMaxTemps]);
+                    resolve([weatherData, minMaxTemps]);
+                }
+            } catch (err) {
+                console.log(err.message);
+                console.log('try another city')
+                this._view.showWrongCityAlert();
+            }
+        })
 
-        switch (this._units) {
-            case 'default':
-                tempUnit = 'K';
-                windSpeedUnit = 'm/s';
-                break;
-            case 'metric':
-                tempUnit = String.fromCharCode(176) + 'C';
-                windSpeedUnit = 'm/s';
-                break;
-            case 'imperial':
-                tempUnit = String.fromCharCode(176) + 'F';
-                windSpeedUnit = 'mph';
-                break;
-            default:
-                console.log('wrong unit')
-        }
-
-        const weatherData = await this._weatherAPIRequest(request)
-            .then(data => {
-
-                this._view.setDateAndTime(this._getlocalTime(data.dt, data.timezone));
-                this._view.setCityAndCountry(data.name, data.sys.country);
-                this._view.setCurrentIcon(data.weather[0].id, this._dayOrNight(data.dt, data.timezone, data.sys.sunrise, data.sys.sunset));
-                this._view.setCurrentDescription(data.weather[0].description);
-                this._view.setCurrentTemperature(data.main.temp, tempUnit);
-                this._view.setCurrentHumidity(data.main.humidity, '%');
-                this._view.setCurrentWindSpeed(data.wind.speed, windSpeedUnit);
-                this._view.setCurrentWindDeg(data.wind.deg, String.fromCharCode(176));
-                this._view.setCurrentPressure(data.main.pressure, 'hPa');
-
-                return data;
-            });
-
-        const forecastData = await this._weatherAPIRequest(requestForecast)
-            .then((forecast) => {
-                return this._forecastMinMaxTemps(forecast);
-            }).then(minMaxTemps => {
-                this._view.set4DaysTemperature(minMaxTemps, tempUnit);
-                return minMaxTemps
-            });
-
-        return [weatherData, forecastData];
     }
 
     //method fetching weather data
     async _weatherAPIRequest(request) {
+
         const response = await fetch(request);
-        const data = await response.json();
-        return data;
+        if (response.status !== 200) {
+            throw new Error("Response error", response.status)
+        } else {
+            const response = await fetch(request);
+            const data = await response.json();
+            return data;
+        }
+
     }
     _getlocalTime(datetime, timezone) {
 
@@ -168,4 +133,67 @@ export default class Model {
             return 'night';
         }
     }
+
+    _getUnitStrings() {
+        let tempUnit;
+        let windSpeedUnit;
+
+        switch (this._units) {
+            case 'default':
+                tempUnit = 'K';
+                windSpeedUnit = 'm/s';
+                break;
+            case 'metric':
+                tempUnit = String.fromCharCode(176) + 'C';
+                windSpeedUnit = 'm/s';
+                break;
+            case 'imperial':
+                tempUnit = String.fromCharCode(176) + 'F';
+                windSpeedUnit = 'mph';
+                break;
+            default:
+                console.log('wrong unit')
+        }
+        return [tempUnit, windSpeedUnit];
+    }
+
+    _getApiRequestsForLocation(location) {
+        let request;
+        let requestForecast;
+        if (location.length == 1) {
+            const city = location[0];
+            request = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=${this._units}&APPID=${this._apiKey}`;
+            requestForecast = `http://api.openweathermap.org/data/2.5/forecast?q=${city}&units=${this._units}&APPID=${this._apiKey}`;
+        } else {
+            const lat = location[0];
+            const long = location[1];
+            request = `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=${this._units}&APPID=${this._apiKey}`;
+            requestForecast = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&units=${this._units}&APPID=${this._apiKey}`;
+        }
+        return [request, requestForecast];
+    }
+
+    _callViewMethods(weatherData, forecastData) {
+        console.log('calling view methods');
+        
+        const [tempUnit, windSpeedUnit] = this._getUnitStrings();
+
+        this._view.setDateAndTime(this._formatDate(this._getlocalTime(weatherData.dt, weatherData.timezone)));
+        this._view.setCityAndCountry(weatherData.name, weatherData.sys.country);
+        this._view.setCurrentIcon(weatherData.weather[0].id, this._dayOrNight(weatherData.dt, weatherData.timezone, weatherData.sys.sunrise, weatherData.sys.sunset));
+        this._view.setCurrentDescription(weatherData.weather[0].description);
+        this._view.setCurrentTemperature(weatherData.main.temp, tempUnit);
+        this._view.setCurrentHumidity(weatherData.main.humidity, '%');
+        this._view.setCurrentWindSpeed(weatherData.wind.speed, windSpeedUnit);
+        this._view.setCurrentWindDeg(weatherData.wind.deg, String.fromCharCode(176));
+        this._view.setCurrentPressure(weatherData.main.pressure, 'hPa');
+        this._view.set4DaysTemperature(forecastData, tempUnit);
+        this._view.changeBgImage(this._dayOrNight(weatherData.dt, weatherData.timezone, weatherData.sys.sunrise, weatherData.sys.sunset));
+    }
+
+    _formatDate(date) {
+        const dateFormat = require('dateformat');
+        return dateFormat(date, "dddd yyyy.mm.dd h:MM:ss TT");
+    }
+
 }
