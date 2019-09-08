@@ -33,3 +33,6 @@ It should take you to a browser with our application running
 
 ![alt text](weatherApp-UML.jpg "MVC -  UML class diagram")
 
+### UI
+
+App design was inspired by mock-up by [Mário Rodeghiero](https://github.com/mariorodeghiero/weather-fetch-api/blob/master/src/img/weather.gif).
