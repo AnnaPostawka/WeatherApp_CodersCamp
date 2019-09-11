@@ -1,3 +1,7 @@
+---
+permalink: /index.html
+---
+
 # WeatherApp
 A weather forecast app built with vanilla Javascript.
 

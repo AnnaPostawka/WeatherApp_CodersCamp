@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    </script>
+    
+    <title>WeatherApp</title>
+</head>
+
+<body>
+    <div id="root" class="container">
+        <div class="switchBox">
+            <input type="checkbox" name="switch" class="switch-checkbox" id="switch" checked>
+            <label class="switch-label" for="switch">
+                <span class="switch-inner"></span>
+                <span class="switch-switch"></span>
+            </label>
+        </div>
+        <h1 class="title">Welcome to the <span class="title__highlight">Weather</span> App</h1>
+        <form class="form" action="">
+            <input class="form__input" placeholder="Enter your city.." type="text">
+        </form>
+        <div class="weather-Info-Container">
+            <div class="currentInfo">
+                <div class="currentInfo__temperatureBox temperatureBox">
+                    <i class="temperatureBox__weatherIcon"></i>
+                    <span class="temperatureBox__tempValue currentTemp"></span>
+                </div>
+                <h2 class="currentInfo__city"></h2>
+                <div class="currentInfo__details">
+                    <div class="currentInfo__wind currentInfo__detail">
+                        <span class="wind-value"></span>
+                        <i class="currentInfo__windIcon"></i>
+                    </div>
+                    <div class="currentInfo__humidity currentInfo__detail">
+                        <span class="humidity-value"></span>
+                    </div>
+                    <div class="currentInfo__pressure currentInfo__detail">
+                        <span class="pressure-value"></span>
+                    </div>
+                </div>
+                <div class="currentInfo__details">
+                    <div class="currentInfo__date currentInfo__detail"></div>
+                    <div class="currentInfo__sky currentInfo__detail"></div>
+                </div>
+            </div>
+            <div class="forecast">
+                <div class="forecast__day">
+                    <p class="forecast__item"></p>
+                    <p class="forecast__item"></p>
+                    <p class="forecast__item"></p>
+                </div>
+                <div class="forecast__day">
+                    <p class="forecast__item day"></p>
+                    <p class="forecast__item  forecast__value min"></p>
+                    <p class="forecast__item  forecast__value max"></p>
+                </div>
+                <div class="forecast__day ">
+                    <p class="forecast__item day"></p>
+                    <p class="forecast__item  forecast__value min"></p>
+                    <p class="forecast__item  forecast__value max"></p>
+                </div>
+                <div class="forecast__day ">
+                    <p class="forecast__item day"></p>
+                    <p class="forecast__item  forecast__value min"></p>
+                    <p class="forecast__item  forecast__value max"></p>
+                </div>
+                <div class="forecast__day">
+                    <p class="forecast__item day"></p>
+                    <p class="forecast__item  forecast__value min"></p>
+                    <p class="forecast__item  forecast__value max"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function activatePlacesSearch() {
+            const input = document.querySelector(".form__input");
+            const options = {
+                types: ['(cities)']
+            };
+            const autocomplete = new google.maps.places.Autocomplete(input, options);
+        }
+    </script>
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5RNzk2x-lrcR_-NrBj2Whrv5Dfq05hE8&libraries=places&callback=activatePlacesSearch">
+        </script>
+<script type="text/javascript" src="bundle.js"></script></body>
+
+</html>
