@@ -30,8 +30,13 @@ module.exports = {
         },
         {
             test: /\.(png|woff|woff2|eot|ttf|svg|jpg)$/,
-            use: ['url-loader?limit=200000']
+            use: ['url-loader']
         },
         ]
+    },
+    resolve: {
+        alias: {
+            Images: path.resolve(__dirname, 'src/assets/images/')
+        }
     }
 };

@@ -1,5 +1,10 @@
+import fog from "Images/fog.jpg";
+import night from 'Images/night.jpg';
+
 export default class View {
-    constructor() {}
+    constructor() {
+        this._iconName = "";
+    }
 
 
 
@@ -18,8 +23,14 @@ export default class View {
 
     setCurrentIcon(id, dayOrNight) {
         var elem = document.querySelector('.temperatureBox__weatherIcon');
-        elem.classList.add('wi');
-        elem.classList.add(`wi-owm-${dayOrNight}-${id}`);
+        const newIconName = `wi-owm-${dayOrNight}-${id}`;
+        if (this._iconName) {
+            elem.classList.replace(this._iconName, newIconName);
+        } else {
+            elem.classList.add('wi');
+            elem.classList.add(newIconName);
+        }
+        this._iconName = newIconName;
     }
 
     setCurrentDescription(description) {
@@ -56,27 +67,29 @@ export default class View {
         date.innerHTML = "Date";
         date.nextElementSibling.innerHTML = "Min";
         labels.lastElementChild.innerHTML = "Max";
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < temp.length; i++) {
             document.querySelector('.forecast').querySelectorAll('.day')[i].innerHTML = temp[i].date;
             document.querySelector('.forecast').querySelectorAll('.min')[i].innerHTML = temp[i].temp_min + unit;
             document.querySelector('.forecast').querySelectorAll('.max')[i].innerHTML = temp[i].temp_max + unit;
         }
     }
 
-    showWrongCityAlert(){
+    showWrongCityAlert() {
         const sweetalert = require('sweetalert');
         sweetalert({
             title: "Ooops",
             text: "We cannot find what you're looking for, sorry! Try other city.",
             icon: "error",
-          });
+        });
     }
 
     changeBgImage(dayOrNight) {
         if (dayOrNight === 'day') {
-            document.querySelector('.container').style.backgroundImage = 'url("../src/assets/images/fog.jpg")';
+            console.log('day');
+            document.querySelector('.container').style.backgroundImage = `url(${fog})`;
         } else {
-            document.querySelector('.container').style.backgroundImage = 'url("../src/assets/images/night.jpg")';
+            console.log('night');
+            document.querySelector('.container').style.backgroundImage = `url(${night})`;
         }
     }
 

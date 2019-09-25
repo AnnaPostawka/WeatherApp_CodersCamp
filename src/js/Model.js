@@ -11,7 +11,7 @@ export default class Model {
     //location is an array with city name ['wroclaw']
     //or coords ['lat', 'long'] 
     async changedLocation(location) {
-        const data = await this._getWeatherData(location)
+        const data = await this._getWeatherData(location);
         this._weatherData = data[0];
         this._forecastData = data[1];
         this._callViewMethods(data[0], data[1]);
@@ -175,7 +175,7 @@ export default class Model {
 
     _callViewMethods(weatherData, forecastData) {
         console.log('calling view methods');
-        
+
         const [tempUnit, windSpeedUnit] = this._getUnitStrings();
 
         this._view.setDateAndTime(this._formatDate(this._getlocalTime(weatherData.dt, weatherData.timezone)));
