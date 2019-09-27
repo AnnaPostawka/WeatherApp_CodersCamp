@@ -22,6 +22,7 @@ export default class View {
     }
 
     setCurrentIcon(id, dayOrNight) {
+        // CODE_REVIEW Bezpieczniej używać let i const.
         var elem = document.querySelector('.temperatureBox__weatherIcon');
         const newIconName = `wi-owm-${dayOrNight}-${id}`;
         if (this._iconName) {
@@ -65,6 +66,7 @@ export default class View {
         const labels = document.querySelector('.forecast__day');
         const date = labels.firstElementChild;
         date.innerHTML = "Date";
+        // CODE_REVIEW innerText w tym przypadku zasadniejszy niż innerHTML
         date.nextElementSibling.innerHTML = "Min";
         labels.lastElementChild.innerHTML = "Max";
         for (let i = 0; i < temp.length; i++) {

@@ -44,6 +44,8 @@ export default class Controller {
       this._checkGeoLocation()
     }
     const units = localStorage.getItem('units')
+    // CODE_REVIEW this.modelChangedUnits jest wspólne dla obu ifów
+    // i wystarczyłoby wpisać w jednym miejscu
     if (units == Units.METRIC) {
       document.querySelector('#switch').checked = true
       this.model.changedUnits(Units.METRIC)
