@@ -78,6 +78,7 @@
         </div>
     </div>
     <script>
+        // CODE_REVIEW Czemu ten skrypt jest tutaj, a nie gdzieś w js?
         function activatePlacesSearch() {
             const input = document.querySelector(".form__input");
             const options = {
@@ -92,3 +93,27 @@
 </body>
 
 </html>
+
+<!-- CODE_REVIEW -->
+<!-- Nie oceniałem html ani css. Zauważyłem jednak, że mieszacie konwencje nazywania klas. -->
+<!-- Starajcie się tak nie robić, najlepiej jest ustalić konwencje na samym początku i się jej trzymać. -->
+<!-- Było trochę błędów w kodzie JS, ale były to raczej takie jednostkowe błędy. Szczegółów szukać po plikach. -->
+<!-- Zewnętrzne cssy lepiej jest podpinać po <link> niż pobierać. Jeśli się da oczywiście. -->
+<!-- Szybkie przełączanie jednostek może doprowadzić do błędów (udało mi się -->
+<!-- sprawić, że pokazywana pogoda we Wrocławiu to 56 stopni :P) -->
+<!-- Podoba mi się cache'owanie miasta. -->
+<!-- Tło trochę rozjeżdża się w 4K -->
+<!-- Przycisk ze zmianą jednostek mógłby być fixed albo sticky. -->
+<!-- Trochę za mały padding w divie z pogodą w urządzeniach o wąskim ekranie. -->
+<!-- Animacja wchodzenia pogody mogłaby poczekać jeśli użytkownik nie zatwierdził gps. -->
+<!-- Ogólnie strona jest ładna i przejrzysta - podoba mi się. -->
+<!-- Bardzo ładna animacja zmiany jednostek i wejścia pogody. -->
+<!-- Zmieniające się tło też świetne. -->
+
+<!-- Ostateczna ocena: -->
+<!-- Code quality: 8.5/10
+    Design quality: 9.5/10
+    Business quality: 10/10
+    Features quality: 9.5/10
+    RAZEM: 37.5/40
+ -->
